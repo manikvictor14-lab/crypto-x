@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crypto Login</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#0b0f1a;
+      overflow:hidden;
+      color:white;
+    }
+
+    /* Background Glow */
+    body::before{
+      content:"";
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:linear-gradient(#00f7ff,#8a2be2);
+      border-radius:50%;
+      filter:blur(150px);
+      opacity:0.4;
+      top:-100px;
+      left:-100px;
+    }
+
+    body::after{
+      content:"";
+      position:absolute;
+      width:400px;
+      height:400px;
+      background:linear-gradient(#00ff99,#00ccff);
+      border-radius:50%;
+      filter:blur(150px);
+      opacity:0.3;
+      bottom:-100px;
+      right:-100px;
+    }
+
+    .login-container{
+      position:relative;
+      width:380px;
+      padding:40px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:20px;
+      backdrop-filter:blur(15px);
+      box-shadow:0 0 30px rgba(0,255,255,0.15);
+      z-index:1;
+    }
+
+    .logo{
+      text-align:center;
+      font-size:32px;
+      font-weight:bold;
+      margin-bottom:10px;
+      color:#00f7ff;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:#bbb;
+      margin-bottom:30px;
+    }
+
+    .input-group{
+      margin-bottom:20px;
+    }
+
+    .input-group label{
+      display:block;
+      margin-bottom:8px;
+      font-size:14px;
+      color:#ddd;
+    }
+
+    .input-group input{
+      width:100%;
+      padding:14px;
+      border:none;
+      outline:none;
+      border-radius:10px;
+      background:rgba(255,255,255,0.08);
+      color:white;
+      font-size:15px;
+      transition:0.3s;
+    }
+
+    .input-group input:focus{
+      border:1px solid #00f7ff;
+      box-shadow:0 0 10px #00f7ff;
+    }
+
+    .options{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+      font-size:14px;
+    }
+
+    .options a{
+      color:#00f7ff;
+      text-decoration:none;
+    }
+
+    .login-btn{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:10px;
+      background:linear-gradient(90deg,#00f7ff,#8a2be2);
+      color:white;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .login-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 20px #00f7ff;
+    }
+
+    .signup{
+      text-align:center;
+      margin-top:20px;
+      font-size:14px;
+      color:#aaa;
+    }
+
+    .signup a{
+      color:#00f7ff;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    .error{
+      color:#ff4d6d;
+      font-size:13px;
+      margin-top:5px;
+      display:none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+
+    <div class="logo">₿ CryptoX</div>
+    <div class="subtitle">Secure access to your wallet</div>
+
+    <form id="loginForm">
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+        <div class="error" id="emailError">Please enter a valid email</div>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter your password">
+        <div class="error" id="passwordError">Password must be at least 6 characters</div>
+      </div>
+
+      <div class="options">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="login-btn">
+        Login
+      </button>
+
+    </form>
+
+    <div class="signup">
+      Don’t have an account?
+      <a href="https://myreferraldiscount.blog/">Sign Up</a>
+    </div>
+
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+
+      const emailError = document.getElementById("emailError");
+      const passwordError = document.getElementById("passwordError");
+
+      let valid = true;
+
+      // Email validation
+      if(!email.value.includes("@")){
+        emailError.style.display = "block";
+        valid = false;
+      } else {
+        emailError.style.display = "none";
+      }
+
+      // Password validation
+      if(password.value.length < 6){
+        passwordError.style.display = "block";
+        valid = false;
+      } else {
+        passwordError.style.display = "none";
+      }
+
+      if(valid){
+        alert("Login Successful!");
+      }
+    });
+  </script>
+
+</body>
+</html>
